@@ -3,4 +3,4 @@ mssql and Query
 
 
 
-Ntile 
+Ntile https://github.com/ngio/DB_query_mssql/blob/main/Ntile_Rank_PartitionBy.sql
