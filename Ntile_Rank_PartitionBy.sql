@@ -1,19 +1,23 @@
 
-	SELECT ENAME, JOB, COMM, RANK() OVER(ORDER BY COMM DESC) 순위
-	FROM EMP
-	WHERE JOB = 'SALESMAN';
+-- 순위정하기.  Ntile, RANK, Partition By
+
+
+SELECT ENAME, JOB, COMM, RANK() OVER(ORDER BY COMM DESC) 순위
+FROM EMP
+WHERE JOB = 'SALESMAN';
+
 
 SELECT ENAME, JOB, SAL, RANK() OVER (ORDER BY SAL DESC) 순위
 FROM EMP 
 ORDER BY JOB;
 
-1. ORDER BY 문을 사용해 정렬할 경우
+
+--1. ORDER BY 문을 사용해 정렬할 경우
   SELECT ENAME, JOB, SAL, RANK() OVER (ORDER BY SAL DESC) 순위
   FROM EMP 
   ORDER BY JOB;
 
-2. RANK 함수에서 PARTITION 할 경우
-
+--2. RANK 함수에서 PARTITION 할 경우
 SELECT ENAME, JOB, SAL, RANK() OVER (PARTITION BY JOB
                                      ORDER BY SAL DESC) 순위
 FROM EMP ;
@@ -23,30 +27,34 @@ FROM EMP ;
 SELECT DENSE_RANK(2975) WITHIN GROUP (ORDER BY SAL DESC) 순위
 FROM EMP;
 
-** 데이터분석 함수로 등급 출력하기 (NTILE)
-- NTITLE(n) OVER (ORDER BY ____ DESC/ASC (NULLS LAST))
+
+-- 데이터분석 함수로 등급 출력하기 (NTILE)
+-- NTITLE(n) OVER (ORDER BY ____ DESC/ASC (NULLS LAST))
 SELECT ENAME, JOB, SAL,
 		NTILE(4) OVER (ORDER BY SAL DESC NULLS LAST) 등급
 FROM EMP
 WHERE JOB IN ('ANALYST', 'MANAGER', 'CLERK');
 
 
-** 데이터분석 함수로 순위의 비율 출력하기(CUME_DIST)
+-- 데이터분석 함수로 순위의 비율 출력하기(CUME_DIST)
 SELECT ENAME, SAL, RANK() OVER (ORDER BY SAL DESC) AS RANK_순위,
                                 DENSE_RANK() OVER (ORDER BY SAL DESC) AS DENSE_RANK_순위,
                                 CUME_DIST() OVER (ORDER BY SAL DESC) AS CUME_DIST
 FROM EMP;
 
-** 데이터분석 함수로 데이터를 가로로 출력하기(LISTAGG)
+
+-- 데이터분석 함수로 데이터를 가로로 출력하기(LISTAGG)
 SELECT JOB, LISTAGG(ENAME, ',') WITHIN GROUP (ORDER BY ENAME) AS EMPLOYEE
 FROM EMP
 GROUP BY JOB;
+
 
 SELECT DEPTNO, LISTAGG(ENAME||'(' ||EMPNO|| ')', ',' ) WITHIN GROUP (ORDER BY ENAME)
 FROM EMP
 GROUP BY DEPTNO;
 
-** 데이터분석 함수로 바로 전 행과 다음 행 출력하기 (LAG, LEAD)
+
+-- 데이터분석 함수로 바로 전 행과 다음 행 출력하기 (LAG, LEAD)
 SELECT EMPNO, ENAME, SAL,
         LAG(SAL, 1) OVER (ORDER BY SAL ASC) AS 전_행,
         LEAD(SAL,1) OVER (ORDER BY SAL ASC) AS 다음_행
