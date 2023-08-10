@@ -1,3 +1,5 @@
+-- [MSSQL] 테이블 두 개 사용해서 select 된 값 바로 update하기
+
 -- 1. 먼저 현재값과 update해야할 값을 조회해본다.
 select a.컬럼1, b.컬럼1
         ,a.컬럼2, b.컬럼2
