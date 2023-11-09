@@ -1,0 +1,49 @@
+SQL Server 2008, SQL Server 2012
+
+ 
+
+문자(VARCHAR)를 숫자형식(타입)으로 변경하는 방법을 소개한다.
+
+numeric과 decimal 타입은 소수점 이하 값을 반올림한다.
+
+int, float 타입 보다는 numeric과 decimal 타입을 사용할 것을 권장하며 그 중에서도
+
+decimal 타입을 사용할 것을 권장 한다고 한다.
+
+ 
+
+<숫자형>
+
+int : 정수
+
+float : 부동소수점
+
+numeric : 실수
+
+decimal : 실수 (numeric 동일)
+
+ 
+
+numeric( [전체길이(소수점이하포함)], [소수점이하길이] )
+
+decimal( [전체길이(소수점이하포함), [소수점이하길이] )
+
+ 
+
+문자 -> 숫자 변환
+
+CONVERT( [숫자형], [값] )
+
+ 
+
+SELECT CONVERT(int, '12')
+           , CONVERT(float, '12.54321')
+           , CONVERT(numeric, '12.54321')
+           , CONVERT(numeric(6,4), '12.54321')
+           , CONVERT(decimal(6,4), '12.54321')
+
+--결과 1 : 12
+--결과 2 : 12.54321
+--결과 3 : 13
+--결과 4 : 12.5432
+--결과 5 : 12.5432
