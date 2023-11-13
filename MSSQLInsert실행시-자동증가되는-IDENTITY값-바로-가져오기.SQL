@@ -1,0 +1,14 @@
+
+
+-- [MSSQL] MSSQL Insert 실행시 자동증가되는 IDENTITY값 바로 가져오기
+
+
+
+SELECT @@IDENTITY
+
+
+
+INSERT INTO T_AUTH ( VAL1 ,VAL2 ,VAL3)
+values( #{VAL1} ,#{VAL2} ,#{VAL3}) 
+
+SELECT @@IDENTITY AS SEQ
