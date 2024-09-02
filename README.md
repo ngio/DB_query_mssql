@@ -2,6 +2,8 @@
 mssql and Query 
 
 
+2024.09.02 [postgreSQL을 검색엔진으로 활용하기](./postgreSQL_using_searchEngine.md)  
+
 
 Ntile https://github.com/ngio/DB_query_mssql/blob/main/Ntile_Rank_PartitionBy.sql
 
