@@ -10,3 +10,10 @@ Ntile https://github.com/ngio/DB_query_mssql/blob/main/Ntile_Rank_PartitionBy.sq
 랜덤(NEWID, RAND) : https://github.com/ngio/DB_query_mssql/blob/main/랜덤_select_NEWID_RAND.sql
 
 checkident_이용해서_identity_초기화.sql https://github.com/ngio/DB_query_mssql/blob/main/checkident_이용해서_identity_초기화.sql
+
+
+[MSSQL ERD 지원하는 오픈소스 프로그램](./README_ERD.md)
+
+
+
+
